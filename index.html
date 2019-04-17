@@ -537,11 +537,11 @@
       bottom: 0;
       right: 0;
       left: 0;
+      font-size: 0;
       background-color: #777;
     }
 
     .player .inner {
-      display: table;
       padding: 10px;
     }
 
@@ -659,6 +659,18 @@
       -webkit-border-radius: 50%;
       border-radius: 50%;
       background-color: #fff;
+    }
+
+    @media screen and (orientation: landscape) {
+      .player .inner {
+        display: inline-block;
+        width: 50%;
+      }
+
+      .player .bottom {
+        display: inline-block;
+        width: 50%;
+      }
     }
 
 
