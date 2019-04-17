@@ -6,7 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="format-detection" content="telephone=no">
-  <title>Музыка</title>
+  <title>Аудиокниги</title>
   <style>
     @font-face {
       font-family:'OpenSans';
@@ -201,6 +201,24 @@
       border: none;
     }
 
+    .header .plus18 {
+      display: table-cell;
+      width: 30px;
+      padding-right: 8px;
+    }
+
+    .header .plus18 div {
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg width='37' height='36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.684 23.755v-9.62H9.367v-2.467h5.519v12.087h-3.202zM26.908 14.795c0 1.05-.59 1.98-1.587 2.506 1.39.552 2.247 1.711 2.247 3.058 0 2.17-2.008 3.558-5.154 3.558s-5.154-1.361-5.154-3.504c0-1.374.941-2.546 2.388-3.099-1.068-.566-1.742-1.536-1.742-2.587 0-1.927 1.756-3.153 4.494-3.153 2.767-.027 4.508 1.24 4.508 3.22zM20.28 20.09c0 1.024.758 1.59 2.134 1.59 1.39 0 2.163-.552 2.163-1.59 0-.997-.772-1.563-2.163-1.563-1.376-.014-2.134.566-2.134 1.563zm.323-5.12c0 .862.646 1.347 1.811 1.347 1.166 0 1.812-.485 1.812-1.347 0-.903-.646-1.402-1.812-1.402-1.165 0-1.811.499-1.811 1.402z' fill='%23fff'/%3E%3Cpath d='M32.905 13.03c.533 1.509.8 3.085.8 4.688 0 8.058-6.84 14.62-15.237 14.62-8.399 0-15.238-6.562-15.238-14.62C3.23 9.661 10.07 3.1 18.468 3.1c1.67 0 3.314.256 4.887.768V.633A19.206 19.206 0 0 0 18.468 0C8.286 0 0 7.95 0 17.718c0 9.77 8.286 17.719 18.468 17.719 10.181 0 18.467-7.95 18.467-17.718 0-1.59-.224-3.167-.66-4.69h-3.37z' fill='%23fff'/%3E%3Cpath d='M31.979 4.757V1.36h-2.542v3.396h-3.525v2.438h3.525v3.396h2.541V7.195h3.54V4.757h-3.54z' fill='%23fff'/%3E%3C/svg%3E");
+      -webkit-background-size: contain;
+      background-size: contain;
+      background-position: 0 0;
+      background-repeat: no-repeat;
+      border: none;
+    }
+
 
     /*MAIN---------------------------------------------------*/
 
@@ -214,7 +232,7 @@
       padding-top: 20px;
       height: 100%;
       -webkit-filter: blur(3px);
-      filter: blur(3px);
+      filter: blur(4px);
     }
 
     .main .track {
@@ -449,6 +467,22 @@
       text-align: center;
     }
 
+    .main .heading {
+      position: absolute;
+      bottom: 100%;
+      width: 100%;
+      margin-bottom: 70px;
+    }
+
+    .main .heading p {
+      font-family: 'Rubik', sans-serif;
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 32px;
+      color: #ef6129;
+      text-shadow: 0 0 10px #fff;
+    }
+
     .main .btn {
       position: relative;
       display: inline-block;
@@ -469,31 +503,31 @@
       -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
-      font-family: 'Rubik', sans-serif;
-      font-size: 30px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 32px;
       font-weight: bold;
       line-height: normal;
       color: #FFFFFF;
       text-shadow: 0 4px 7px rgba(0, 0, 0, 0.31);
     }
 
-    .main .btn span::after {
-      position: absolute;
-      top: 50%;
-      right: -40px;
-      -webkit-transform: translate(0, -50%);
-      -ms-transform: translate(0, -50%);
-      transform: translate(0, -50%);
-      content: '';
-      display: block;
-      width: 40px;
-      height: 22px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='443.307' height='443.306'%3E%3Cpath d='M415.934 212.799L36.788 2.097C32.411-.377 28.65-.661 25.51 1.242c-3.14 1.902-4.708 5.328-4.708 10.276V431.78c0 4.952 1.569 8.381 4.708 10.284 3.14 1.902 6.901 1.622 11.278-.855l379.146-210.703c4.381-2.478 6.571-5.434 6.571-8.856 0-3.426-2.191-6.376-6.571-8.851z' fill='%23fff'/%3E%3C/svg%3E");
-      background-position: center;
-      -webkit-background-size: contain;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
+    /*.main .btn span::after {*/
+    /*  position: absolute;*/
+    /*  top: 50%;*/
+    /*  right: -40px;*/
+    /*  -webkit-transform: translate(0, -50%);*/
+    /*  -ms-transform: translate(0, -50%);*/
+    /*  transform: translate(0, -50%);*/
+    /*  content: '';*/
+    /*  display: block;*/
+    /*  width: 40px;*/
+    /*  height: 22px;*/
+    /*  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='443.307' height='443.306'%3E%3Cpath d='M415.934 212.799L36.788 2.097C32.411-.377 28.65-.661 25.51 1.242c-3.14 1.902-4.708 5.328-4.708 10.276V431.78c0 4.952 1.569 8.381 4.708 10.284 3.14 1.902 6.901 1.622 11.278-.855l379.146-210.703c4.381-2.478 6.571-5.434 6.571-8.856 0-3.426-2.191-6.376-6.571-8.851z' fill='%23fff'/%3E%3C/svg%3E");*/
+    /*  background-position: center;*/
+    /*  -webkit-background-size: contain;*/
+    /*  background-size: contain;*/
+    /*  background-repeat: no-repeat;*/
+    /*}*/
 
     .main .price {
       position: absolute;
@@ -513,20 +547,25 @@
     }
 
     @media screen and (max-height: 240px) and (orientation: landscape) {
-      /*.main .inner {*/
-      /*  display: table-cell;*/
-      /*  vertical-align: middle;*/
-      /*}*/
+      .main .btn-wrapper {
+        top: auto;
+        bottom: 68px;
+        -webkit-transform: translate(0, -27px);
+        -ms-transform: translate(0, -27px);
+        transform: translate(0, -27px);
+      }
+    }
 
-      /*.main .btn-wrapper {*/
-      /*  position: relative;*/
-      /*  top: auto;*/
-      /*  right: auto;*/
-      /*  left: auto;*/
-      /*  -webkit-transform: none;*/
-      /*  -ms-transform: none;*/
-      /*  transform: none;*/
-      /*}*/
+    @media screen and (max-height: 550px) {
+      .main .heading {
+        margin-bottom: 35px;
+      }
+    }
+
+    @media screen and (max-height: 400px) {
+      .main .heading {
+        display: none;
+      }
     }
 
     /*PLAYER--------------------------------------------------*/
@@ -678,7 +717,7 @@
 
     .rules {
       display: table-row;
-      background-color: #333;
+      background-color: #777;
     }
 
     .rules .inner {
@@ -704,13 +743,16 @@
 <div class="header">
   <div class="inner">
     <div class="logo">
-      <button></button>
+      <button disabled></button>
     </div>
     <div class="name">
-      <span>Музыка</span>
+      <span>Аудиокниги</span>
+    </div>
+    <div class="plus18">
+      <div></div>
     </div>
     <div class="menu">
-      <button></button>
+      <button disabled></button>
     </div>
   </div>
 </div>
@@ -725,7 +767,7 @@
       </div>
     </div>
     <div class="track-info-btn">
-      <button>Информация о треке</button>
+      <button disabled>Информация о треке</button>
     </div>
     <table class="track-info">
       <tr><td>Длительность</td><td>03:52</td></tr>
@@ -736,13 +778,13 @@
     <div class="rating">
       <div class="inner">
         <div class="like-wrapper">
-          <button></button>
+          <button disabled></button>
         </div>
         <div class="total">
           <span>150</span>
         </div>
         <div class="dislike-wrapper">
-          <button></button>
+          <button disabled></button>
         </div>
       </div>
     </div>
@@ -750,13 +792,13 @@
       <div class="inner">
         <div class="top">
           <div>
-            <button class="prev"></button>
+            <button class="prev" disabled></button>
           </div>
           <div>
-            <button class="play"></button>
+            <button class="play" disabled></button>
           </div>
           <div>
-            <button class="next"></button>
+            <button class="next" disabled></button>
           </div>
           <div class="volume">
             <div class="icon"></div>
@@ -774,8 +816,11 @@
     </div>
   </div>
   <div class="btn-wrapper" id="btn-wrapper">
+    <div class="heading">
+      <p>Приятного прослушивания</p>
+    </div>
     <a class="btn" id="btn" href="#">
-      <span>Слушать</span>
+      <span>Прослушать</span>
     </a>
     <div class="price">
       <p>Цена: 20 руб. за 1 день</p>
@@ -785,7 +830,7 @@
 
 <div class="rules" id="footer">
   <div class="inner">
-    <span>Провайдер:ООО «Телеком Клуб»</span>
+    <span>Провайдер: ООО «Телеком Клуб»</span>
     <span>claim@telecom-club.com</span>
     <span>8-800-770-04-31</span>
     <a href="#">Пользовательское соглашение</a>
