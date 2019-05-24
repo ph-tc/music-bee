@@ -247,7 +247,7 @@
       font-size: 20px;
       font-weight: bold;
       line-height: 20px;
-      color: #ef6129;
+      color: #1CA46A;
     }
 
     .main .track .title {
@@ -318,7 +318,7 @@
       line-height: 16px;
       color: #fff;
       border: none;
-      background-color: #ef6129;
+      background-color: #1CA46A;
     }
 
     .main .track-info {
@@ -356,6 +356,20 @@
         display: none;
       }
     }
+
+		/*PLACEHOLDER*/
+
+		.placeholder {
+			display: table-row;
+			width: 100%;
+			height: 136px;
+		}
+
+		@media screen and (max-height: 540px) {
+			.placeholder {
+				display: none;
+			}
+		}
 
 
     /*RATING------------------------------------------------*/
@@ -449,7 +463,7 @@
       font-size: 32px;
       font-weight: bold;
       line-height: 32px;
-      color: #ef6129;
+      color: #1CA46A;
       text-shadow: 0 0 10px #fff;
     }
 
@@ -514,7 +528,7 @@
       font-size: 22px;
       line-height: 22px;
       color: #ddd;
-      background-color: #aaa;
+      background-color: #fff;
     }
 
     @media screen and (max-height: 240px) and (orientation: landscape) {
@@ -628,7 +642,7 @@
       left: 0;
       width: 60%;
       height: 100%;
-      background-color: #ef6129;
+      background-color: #1CA46A;
     }
 
     .player .bottom {
@@ -653,7 +667,7 @@
       top: 0;
       width: 40%;
       height: 100%;
-      background-color: #ef6129;
+      background-color: #1CA46A;
     }
 
     .player .bottom .current::after {
@@ -745,12 +759,13 @@
     <div class="track-info-btn">
       <button disabled>Информация о треке</button>
     </div>
-    <table class="track-info">
-      <tr><td>Длительность</td><td>03:52</td></tr>
-      <tr><td>Размер(качество)</td><td>2Mb(320Kbps)</td></tr>
-      <tr><td>Жанр</td><td>Рок</td></tr>
-      <tr><td>Прослушано</td><td>182 раз(а)</td></tr>
-    </table>
+<!--    <table class="track-info">-->
+<!--      <tr><td>Длительность</td><td>03:52</td></tr>-->
+<!--      <tr><td>Размер(качество)</td><td>2Mb(320Kbps)</td></tr>-->
+<!--      <tr><td>Жанр</td><td>Рок</td></tr>-->
+<!--      <tr><td>Прослушано</td><td>182 раз(а)</td></tr>-->
+<!--    </table>-->
+		<div class="placeholder"></div>
     <div class="rating">
       <div class="inner">
         <div class="like-wrapper">
