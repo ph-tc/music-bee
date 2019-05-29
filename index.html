@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="format-detection" content="telephone=no">
+	<title th:text="${isWebRequest} == false ? 'Подтверждение оплаты с баланса телефона' : 'Подтверждение оплаты с баланса телефона шаг 2 из 2'">Подтверждение оплаты с баланса телефона</title>
+	<meta th:if="${isWebRequest} == false" name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes"/>
+	<meta th:if="${isWebRequest} == false" name="MobileOptimized" content="width"/>
+	<meta th:if="${isWebRequest} == false" name="HandheldFriendly" content="true"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="format-detection" content="telephone=no">
   <title>Аудиокниги</title>
   <style>
     @font-face {
@@ -111,7 +113,6 @@
 
     body {
       position: relative;
-      display: table;
       height: 100%;
       width: 100%;
       margin: 0;
@@ -119,7 +120,14 @@
       -ms-text-size-adjust: 100%;
       -moz-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
+			overflow: hidden;
     }
+
+		form {
+			display: table;
+			width: 100%;
+			height: 100%;
+		}
 
     img {
       max-width: 100%;
@@ -435,6 +443,7 @@
       height: 20vh;
       text-decoration: none;
       text-align: center;
+			border: none;
       background-color: #1CA46A;
       -webkit-border-radius: 20px;
       border-radius: 20px;
@@ -475,22 +484,31 @@
       background-repeat: no-repeat;
     }
 
-    .main .price {
-      position: absolute;
-      top: 100%;
-      width: 100%;
-      text-align: center;
-    }
+		.main .btn + div {
+			position: absolute;
+			top: 100%;
+			width: 100%;
+			text-align: center;
+		}
 
-    .main .price p {
-      display: inline-block;
-      margin: 5px auto 0;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 22px;
-      line-height: 22px;
-      color: #8b8787;
-      background-color: #fff;
-    }
+		.main .price span {
+			display: none;
+		}
+
+		.main .price span:first-child {
+			display: inline-block;
+		}
+
+		.main .price .line2 {
+			display: inline-block;
+			margin: 5px auto 0;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 22px;
+			font-weight: normal;
+			line-height: 22px;
+			color: #999;
+			background-color: #fff;
+		}
 
     @media screen and (max-height: 240px) and (orientation: landscape) {
       .main .btn-wrapper {
@@ -696,7 +714,11 @@
 </head>
 
 
-<body>
+<body th:if="${isWebRequest} ==false" class="lbody" id="overflow">
+<form method="POST" action="/landing" th:attr="action=@{order.html(sessionId=${session_id})}" name="mainFrm">
+	<input type="hidden" name="requestId" th:value="${requestId}"/>
+	<input type="hidden" name="msisdn" th:value="${msisdn}"/>
+	<input type="hidden" name="repeatCode" value="false"/>
 <div class="header">
   <div class="inner">
     <div class="name">
@@ -716,12 +738,6 @@
     <div class="track-info-btn">
       <button disabled>Информация о треке</button>
     </div>
-<!--    <table class="track-info">-->
-<!--      <tr><td>Длительность</td><td>03:52</td></tr>-->
-<!--      <tr><td>Размер(качество)</td><td>2Mb(320Kbps)</td></tr>-->
-<!--      <tr><td>Жанр</td><td>Рок</td></tr>-->
-<!--      <tr><td>Прослушано</td><td>182 раз(а)</td></tr>-->
-<!--    </table>-->
 		<div class="tracklist">
 			<table>
 				<tr>
@@ -802,25 +818,37 @@
     <div class="heading">
       <p>Приятного прослушивания</p>
     </div>
-    <a class="btn" id="btn" href="#">
+    <button class="btn" id="btn" href="#">
       <span>
         Прослушать
       </span>
-    </a>
-    <div class="price">
-      <p>Цена: 20 руб. за 1 день</p>
-    </div>
+    </button>
+		<div th:if="${useSmsLink == null || useSmsLink == 'false'}">
+			<span class="price" th:switch="${evalRequestType}">
+				<span th:case="'single-request'">
+					<span th:if="${tarifficationType == 1 and cpaRequestPriceCodePrice != null}" th:text="'Стоимость: ' + ${cpaRequestPriceCodePrice} + ' руб.'" class="line2">Стоимость: 13 руб.</span>
+				</span>
+				<span th:case="'subscription-request'">
+					<span th:if="${cpaSubscriptionChargePeriodPriceCodePrice > 0}" th:text="'Доступ: ' + ${cpaSubscriptionChargePeriodPriceCodePrice} + ' руб.' + ' за ' + ${cpaSubscriptionChargePeriodStr}" class="line2">Доступ: 32 руб. за 10 дней</span>
+				</span>
+				<span th:case="'tnb-subscription-request'">
+					<span th:text="${cpaSubscriptionChargePeriodPriceCodePrice > 0 ? cpaSubscriptionChargePeriodPriceCodePrice + ' руб.' : 'Бесплатно'} + ' ' + ${cpaTnbTryEndDate != null ? 'до ' + formatter.formatDate(cpaTnbTryEndDate, 'dd.MM.yyyy') : cpaSubscriptionPeriodStr}" class="line2">Бесплатно до ЧЧ.ММ.ГГ</span>
+					<span th:if="${buy_cpaSubscriptionChargePeriodPriceCodePrice > 0}" th:text="'Далее: ' + ${buy_cpaSubscriptionChargePeriodPriceCodePrice + ' руб.' + ' в ' + buy_cpaSubscriptionChargePeriodStr}" class="line3">Далее: 32 руб. в 10 дней</span>
+				</span>
+			</span>
+		</div>
   </div>
 </div>
 
 <div class="rules" id="footer">
   <div class="inner">
-    <span>Провайдер: ООО «Телеком Клуб»</span>
-    <span>claim@telecom-club.com</span>
-    <span>8-800-770-04-31</span>
-    <a href="#">Пользовательское соглашение</a>
+		<span th:utext="'Провайдер:' + ${(#strings.arraySplit(partnerContact, ','))[0]}">Провайдер:ООО «Телеком Клуб»</span>
+		<span th:utext="${(#strings.arraySplit(partnerContact, ','))[1]}">claim@telecom-club.com</span>
+		<span th:utext="${(#strings.arraySplit(partnerContact, ','))[2]}">88007700431</span>
+		<a href="http://moskva.beeline.ru/customers/products/mobile/services/details/uslugi-na-korotkikh-nomerakh/">Пользовательское соглашение</a>
   </div>
 </div>
+</form>
 
 <script type="text/javascript">
     //<![CDATA[
